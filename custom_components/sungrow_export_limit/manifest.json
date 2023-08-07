@@ -9,11 +9,11 @@
   "documentation": "https://www.home-assistant.io/integrations/sungrow_export_limit",
   "homekit": {},
   "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/ross-w/sungrow-export-limit-ha/issues",
   "requirements": [
     "sungrow-http-config==0.0.6"
   ],
   "ssdp": [],
-  "zeroconf": [],
-  "issue_tracker": "https://github.com/ross-w/sungrow-export-limit-ha/issues",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "zeroconf": []
 }

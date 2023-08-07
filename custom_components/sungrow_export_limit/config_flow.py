@@ -25,7 +25,7 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
 
 
 def validate_connection_to_inverter(host: str):
-    """Attempts to connect to supplied host."""
+    """Connect to supplied host."""
     client = SungrowHttpConfig.SungrowHttpConfig(host)
 
     if not client.connect():
