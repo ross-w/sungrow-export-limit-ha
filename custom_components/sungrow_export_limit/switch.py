@@ -1,4 +1,4 @@
-"""Switch integration to turn on/off the export limit."""
+"""Integration to turn on/off the export limit with a switch."""
 import voluptuous as vol
 from homeassistant.components.switch import SwitchEntity
 from homeassistant.const import CONF_HOST

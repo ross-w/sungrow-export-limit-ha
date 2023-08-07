@@ -14,5 +14,6 @@
   ],
   "ssdp": [],
   "zeroconf": [],
+  "issue_tracker": "https://github.com/ross-w/sungrow-export-limit-ha/issues",
   "version": "0.0.1"
 }
