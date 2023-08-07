@@ -1,12 +1,10 @@
+""" Switch integration to turn on/off the export limit """
 import voluptuous as vol
-from homeassistant import config_entries, core
-from homeassistant.components.switch import PLATFORM_SCHEMA, SwitchEntity
+from homeassistant.components.switch import SwitchEntity
 from homeassistant.const import CONF_HOST
 import homeassistant.helpers.config_validation as cv
 
 from sungrow_http_config import SungrowHttpConfig
-
-from .const import DOMAIN
 
 # Define the schema for the configuration flow
 CONFIG_SCHEMA = vol.Schema(
