@@ -48,4 +48,4 @@ If you want to contribute to this please read the [Contribution guidelines](CONT
 [forum]: https://community.home-assistant.io/
 [releases-shield]: https://img.shields.io/github/release/ross-w/sungrow-export-limit-ha.svg?style=for-the-badge
 [releases]: https://github.com/ross-w/sungrow-export-limit-ha/releases
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2023
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2024
