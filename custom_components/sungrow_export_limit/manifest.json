@@ -8,8 +8,8 @@
   "homekit": {},
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/ross-w/sungrow-export-limit-ha/issues",
-  "requirements": ["sungrow-http-config==0.0.9"],
+  "requirements": ["sungrow-http-config==0.0.10"],
   "ssdp": [],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "zeroconf": []
 }
