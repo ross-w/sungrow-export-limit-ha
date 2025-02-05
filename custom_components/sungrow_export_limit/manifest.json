@@ -4,7 +4,7 @@
   "codeowners": ["@ross-w"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://www.home-assistant.io/integrations/sungrow_export_limit",
+  "documentation": "https://github.com/ross-w/sungrow-export-limit-ha",
   "homekit": {},
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/ross-w/sungrow-export-limit-ha/issues",
