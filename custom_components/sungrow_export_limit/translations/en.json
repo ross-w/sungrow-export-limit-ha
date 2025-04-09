@@ -11,10 +11,28 @@
         "step": {
             "user": {
                 "data": {
-                    "export_limit": "Export Limit to set when on, in dekawatts (kW x 100; eg 0.5kW = 50)",
+                    "export_limit": "Initial export limit to set when on, in watts (will be converted to dekawatts for the inverter)",
                     "host": "Host",
                     "mode": "Connection mode (modbus or http)"
+                },
+                "description": "Set up your Sungrow inverter export limit control. The export limit can be adjusted later using the number entity."
+            }
+        }
+    },
+    "entity": {
+        "number": {
+            "export_limit": {
+                "name": "Export Limit Value",
+                "state_attributes": {
+                    "value": {
+                        "name": "Export Limit"
+                    }
                 }
+            }
+        },
+        "switch": {
+            "export_limit": {
+                "name": "Export Limit"
             }
         }
     }

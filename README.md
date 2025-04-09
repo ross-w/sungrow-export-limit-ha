@@ -14,9 +14,10 @@ _Integration with [sungrow_http_config](https://github.com/ross-w/sungrow_http_c
 
 **This integration will set up the following platforms.**
 
-| Platform | Description                           |
-| -------- | ------------------------------------- |
-| `switch` | Switch Sungrow Export Limit on or off |
+| Platform | Description                                                |
+| -------- | ---------------------------------------------------------- |
+| `switch` | Switch Sungrow Export Limit on or off                      |
+| `number` | Control the export limit value in watts                    |
 
 ## Installation
 
@@ -32,8 +33,19 @@ _Integration with [sungrow_http_config](https://github.com/ross-w/sungrow_http_c
 
 During setup, you will need to provide:
 - **Host**: The IP address or hostname of your Sungrow inverter
-- **Export Limit**: The export limit value in dekawatts (kW x 100; e.g., 0.5kW = 50)
+- **Export Limit**: The export limit value in watts (e.g., 500W = 500)
 - **Connection Mode**: Choose between "modbus" or "http" (default) connection methods
+
+## Usage
+
+After installation, you'll have two entities for each Sungrow inverter:
+
+1. **Switch Entity**: Turns the export limit on or off. When turned off, the inverter will not limit export power.
+2. **Number Entity**: Controls the export limit value in watts. This value is only applied when the switch is on. The minimum value is 10 watts (1 dekawatt), as the inverter does not accept lower values.
+
+You can adjust the export limit value at any time using the number entity. The new value will be applied immediately if the switch is on, or will be applied the next time the switch is turned on.
+
+**Note**: Setting an export limit of 0 dekawatts in the underlying module will result in the export limit being disabled. The minimum export limit is therefore 1 dekawatt (10 watts).
 
 <!---->
 

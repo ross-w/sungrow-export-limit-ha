@@ -7,8 +7,7 @@ from homeassistant.core import HomeAssistant
 
 from .const import DOMAIN
 
-# For your initial PR, limit it to 1 platform.
-PLATFORMS: list[Platform] = [Platform.SWITCH]
+PLATFORMS: list[Platform] = [Platform.SWITCH, Platform.NUMBER]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
