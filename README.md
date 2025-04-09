@@ -33,7 +33,11 @@ _Integration with [sungrow_http_config](https://github.com/ross-w/sungrow_http_c
 During setup, you will need to provide:
 - **Host**: The IP address or hostname of your Sungrow inverter
 - **Export Limit**: The export limit value in dekawatts (kW x 100; e.g., 0.5kW = 50)
+<<<<<<< HEAD
 - **Connection Mode**: Choose between "modbus" or "http" (default) connection methods
+=======
+- **Connection Mode**: Choose between "modbus" (default) or "http" connection methods
+>>>>>>> fb248f4fa9f94f4b8bd48cc9cd6d20f5b2c137c8
 
 <!---->
 
