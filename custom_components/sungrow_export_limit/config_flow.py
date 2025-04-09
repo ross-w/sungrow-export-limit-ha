@@ -20,12 +20,12 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required("host"): str,
         vol.Required("export_limit"): vol.All(int, vol.Range(min=0, max=5000)),
-        vol.Optional("mode", default="modbus"): vol.In(["modbus", "http"]),
+        vol.Optional("mode", default="http"): vol.In(["modbus", "http"]),
     }
 )
 
 
-def validate_connection_to_inverter(host: str, mode: str = "modbus"):
+def validate_connection_to_inverter(host: str, mode: str = "http"):
     """Connect to supplied host."""
     client = SungrowHttpConfig.SungrowHttpConfig(host, mode=mode)
 
@@ -44,7 +44,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     # If your PyPI package is not built with async, pass your methods
     # to the executor:
 
-    mode = data.get("mode", "modbus")
+    mode = data.get("mode", "http")
     serial = await hass.async_add_executor_job(
         validate_connection_to_inverter, data["host"], mode
     )
@@ -59,7 +59,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
         "title": "Sungrow Export Limit",
         "serial": serial,
         "export_limit": data["export_limit"],
-        "mode": data.get("mode", "modbus"),
+        "mode": data.get("mode", "http"),
     }
 
 

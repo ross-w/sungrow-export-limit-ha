@@ -23,7 +23,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     """Set up the Sungrow export limit from a config entry."""
     host = entry.data[CONF_HOST]
     export_limit = entry.data.get("export_limit", 50)
-    mode = entry.data.get("mode", "modbus")
+    mode = entry.data.get("mode", "http")
     switch = SungrowExportLimit(host, export_limit, mode)
 
     async_add_entities([switch], update_before_add=True)
@@ -32,7 +32,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
 class SungrowExportLimit(SwitchEntity):
     """Representation of a Sungrow export limit."""
 
-    def __init__(self, host, export_limit, mode="modbus") -> None:
+    def __init__(self, host, export_limit, mode="http") -> None:
         """Initialize the switch."""
         self._host = host
         self._export_limit = export_limit
