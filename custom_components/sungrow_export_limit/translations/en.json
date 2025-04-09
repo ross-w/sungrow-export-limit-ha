@@ -12,7 +12,8 @@
             "user": {
                 "data": {
                     "export_limit": "Export Limit to set when on, in dekawatts (kW x 100; eg 0.5kW = 50)",
-                    "host": "Host"
+                    "host": "Host",
+                    "mode": "Connection mode (modbus or http)"
                 }
             }
         }
