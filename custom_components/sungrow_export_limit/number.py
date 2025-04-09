@@ -2,11 +2,10 @@
 from __future__ import annotations
 
 import logging
-from typing import Any
 
 from homeassistant.components.number import NumberEntity, NumberMode
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_HOST, UnitOfPower
+from homeassistant.const import UnitOfPower
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -21,14 +20,7 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
 ) -> None:
     """Set up the Sungrow export limit number entity from config entry."""
-    data = hass.data[DOMAIN][entry.entry_id]
-    host = data["host"]
-    export_limit = data["export_limit"]
-    mode = data["mode"]
-
-    # Convert the export limit from dekawatts to watts for display
-    export_limit_watts = export_limit * DEKAWATTS_TO_WATTS
-
+    # Create the number entity
     number = SungrowExportLimitNumber(hass, entry)
     async_add_entities([number], update_before_add=True)
 
@@ -48,14 +40,14 @@ class SungrowExportLimitNumber(NumberEntity):
         self.entry = entry
         self.entry_id = entry.entry_id
         data = hass.data[DOMAIN][entry.entry_id]
-        
+
         self._host = data["host"]
         self._export_limit = data["export_limit"]
         self._mode = data["mode"]
-        
+
         # Convert the export limit from dekawatts to watts for display
         self._export_limit_watts = self._export_limit * DEKAWATTS_TO_WATTS
-        
+
         self._attr_unique_id = f"{self._host}_export_limit_number"
         self._attr_name = f"Sungrow Export Limit Value ({self._host})"
         self._client = SungrowHttpConfig.SungrowHttpConfig(host=self._host, mode=self._mode)
@@ -64,7 +56,7 @@ class SungrowExportLimitNumber(NumberEntity):
     async def async_added_to_hass(self) -> None:
         """Run when entity about to be added to hass."""
         await super().async_added_to_hass()
-        
+
         # Listen for changes to the switch entity
         self.async_on_remove(
             self.hass.bus.async_listen(
@@ -77,11 +69,11 @@ class SungrowExportLimitNumber(NumberEntity):
         """Handle switch entity state changes."""
         if not event.data or "entity_id" not in event.data:
             return
-            
+
         entity_id = event.data["entity_id"]
         if not entity_id.endswith(f"{self._host}_export_limit_switch"):
             return
-            
+
         # Update our switch state
         if "new_state" in event.data and event.data["new_state"] is not None:
             self._is_switch_on = event.data["new_state"].state == "on"
@@ -91,14 +83,14 @@ class SungrowExportLimitNumber(NumberEntity):
         """Set the export limit value in watts."""
         # Convert watts to dekawatts for the API
         dekawatts = int(value * WATTS_TO_DEKAWATTS)
-        
+
         # Store the new value
         self._export_limit_watts = value
-        
+
         # Only apply the new limit if the switch is on
         if self._is_switch_on:
             await self.hass.async_add_executor_job(self._client.setExportLimit, dekawatts)
-        
+
         self.async_write_ha_state()
 
     async def async_update(self) -> None:
@@ -107,7 +99,7 @@ class SungrowExportLimitNumber(NumberEntity):
         current_limit_dekawatts = await self.hass.async_add_executor_job(
             self._client.getCurrentExportLimit
         )
-        
+
         # Convert dekawatts to watts for display
         if current_limit_dekawatts > 0:
             self._export_limit_watts = current_limit_dekawatts * DEKAWATTS_TO_WATTS
@@ -127,7 +119,7 @@ class SungrowExportLimitNumber(NumberEntity):
         """Return True if entity is available."""
         # The number entity is always available, even when the switch is off
         return True
-        
+
     @property
     def icon(self) -> str:
         """Return the icon to use for the entity."""

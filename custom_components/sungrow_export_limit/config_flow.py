@@ -91,14 +91,14 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             else:
                 await self.async_set_unique_id(info["serial"])
                 self._abort_if_unique_id_configured()
-                
+
                 # Create a new data dict with the converted export limit
                 entry_data = {
                     "host": user_input["host"],
                     "export_limit": int(user_input["export_limit"] * WATTS_TO_DEKAWATTS),
                     "mode": user_input.get("mode", "http"),
                 }
-                
+
                 return self.async_create_entry(title=info["title"], data=entry_data)
 
         return self.async_show_form(
