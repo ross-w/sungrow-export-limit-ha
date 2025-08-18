@@ -20,7 +20,7 @@ jobs:
           # Get the list of changed files
           FILES=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files --jq '.[].filename')
           echo "Changed files: $FILES"
-          
+
           # Check if only allowed files are changed
           ALLOWED=true
           for file in $FILES; do
@@ -32,7 +32,7 @@ jobs:
               break
             fi
           done
-          
+
           echo "allowed=$ALLOWED" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,7 +43,7 @@ jobs:
         id: wait-for-checks
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: lint
+          checkName: Ruff
           ref: ${{ github.event.pull_request.head.sha }}
           timeoutSeconds: 600
 
