@@ -50,7 +50,7 @@ class SungrowExportLimitNumber(NumberEntity):
 
         self._attr_unique_id = f"{self._host}_export_limit_number"
         self._attr_name = f"Sungrow Export Limit Value ({self._host})"
-        self._client = SungrowHttpConfig.SungrowHttpConfig(host=self._host, mode=self._mode)
+        self._client = SungrowHttpConfig(host=self._host, mode=self._mode)
         self._is_switch_on = False
 
     async def async_added_to_hass(self) -> None:

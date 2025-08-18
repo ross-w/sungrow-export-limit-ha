@@ -63,7 +63,7 @@ class SungrowExportLimit(SwitchEntity):
         self._attr_name = f"Sungrow Export Limit ({self._host})"
         self._attr_unique_id = f"{self._host}_export_limit_switch"
         self._is_on = False
-        self._client = SungrowHttpConfig.SungrowHttpConfig(host=self._host, mode=self._mode)
+        self._client = SungrowHttpConfig(host=self._host, mode=self._mode)
 
         # Track the number entity's value
         self._current_number_value = self._export_limit
