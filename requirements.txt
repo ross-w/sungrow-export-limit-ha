@@ -1,5 +1,5 @@
 colorlog==6.9.0
 homeassistant==2023.2.0
 pip>=21.0,<25.3
-ruff==0.12.11
+ruff==0.13.0
 sungrow-http-config==0.2.0
